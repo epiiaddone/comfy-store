@@ -138,10 +138,20 @@ instead:
 }
 ```
 
-## Install All Libraries
+## Install All Libraries - old library versions - dont work in 2026
 
 ```sh
-npm i axios@1.4.0 dayjs@1.11.9 @reduxjs/toolkit@1.9.5 @tanstack/react-query@4.32.6 @tanstack/react-query-devtools@4.32.6 react-icons@4.10.1 react-redux@8.1.2 react-router-dom@6.14.2 react-toastify@9.1.3
+npm i axios@1.4.0
+npm i dayjs@1.11.9
+npm i @reduxjs/toolkit@1.9.5 (not working 2026)
+npm i @reduxjs/toolkit (instead of above)
+npm i @tanstack/react-query@4.32.6 @tanstack/react-query-devtools@4.32.6 (not working 2026)
+npm i @tanstack/react-query @tanstack/react-query-devtools (instead of above)
+npm i react-icons@4.10.1
+npm i react-redux@8.1.2 (not working 2026)
+npm i react-redux (instead of above)
+npm i react-router-dom@6.14.2
+npm i react-toastify@9.1.3
 
 ```
 
