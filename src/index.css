@@ -1,5 +1,10 @@
 @import "tailwindcss";
-@plugin "daisyui";
+
+/* VS linter doesn't like this @plugin daisiui syntax" */
+/* need to load the themes that you want to use here */
+ @plugin "daisyui" {
+   themes: winter --default, dracula --prefersdark;
+ }
 
 
 /*

@@ -1,4 +1,10 @@
+import ProductsGrid from "../components/ProductsGrid";
+
 const Product = () => {
-  return <h1 className='text-4xl'>Product</h1>;
+  return (
+  <>
+  <ProductsGrid/>
+  </>
+  )
 };
 export default Product;

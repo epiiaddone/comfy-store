@@ -17,6 +17,8 @@ https://github.com/john-smilga/react-course-v3
 
 ## (1) - Setup
 
+- Tailwind CSS IntelliSense - VScode extension
+
 - create vite project with tailwind
 
 ## Solution (1) - Setup Vite and Tailwind
@@ -129,7 +131,11 @@ tailwind.config.js - not necessary in V4+
 instead:
 ```css
 @import "tailwindcss";
-@plugin "daisyui";
+
+/* need to load the themes that you want to use here */
+ @plugin "daisyui" {
+   themes: winter --default, dracula --prefersdark;
+ }
 ```
 
 ```js
@@ -1177,7 +1183,11 @@ export default Hero;
 - create utils/index.js
 - setup custom axios instance
 - figure out the base url
-- setup thunder client (optional)
+- setup thunder client (optional) - This is now paywalled 
+Thunder Client is a lightweight API testing tool built directly into VS Code.
+Think of it as Postman, but inside your editor and much faster to open.
+
+to get all products: https://strapi-store-server.onrender.com/api/products
 
 ## Challenge (18) - Axios Custom Instance
 
@@ -1400,6 +1410,8 @@ ProductsGrid.jsx
 ```js
 import { Link, useLoaderData } from 'react-router-dom';
 const ProductsGrid = () => {
+
+  //react-router-dom will provide the loader that is specified in a parent element
   const { products } = useLoaderData();
 
   return (
