@@ -1,2 +1,12 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+
+/*
+Registers this class in Tailwind’s components layer, which sits between base and utilities in the cascade.
+*/
+@layer components {
+  .align-element {
+    @apply mx-auto max-w-6xl px-8;
+  }
+}

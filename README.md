@@ -549,7 +549,7 @@ const Login = () => {
         <FormInput
           type='email'
           label='email'
-          name='identifier'
+          name='identifier' //the API expects this
           defaultValue='test@test.com'
         />
         <FormInput
@@ -687,7 +687,7 @@ const Register = () => {
 export default Register;
 ```
 
-## Challenge (9) - Custom Class
+## Challenge (9) - Custom Class - align content horizontally
 
 - create custom class
 - align content
