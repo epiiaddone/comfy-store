@@ -1,10 +1,22 @@
-import ProductsGrid from "../components/ProductsGrid";
+import { Filters, PaginationContainer, ProductsContainer } from '../components';
+import { customFetch } from '../utils';
 
-const Product = () => {
-  return (
-  <>
-  <ProductsGrid/>
-  </>
-  )
+const url = '/products';
+export const loader = async ({ request }) => {
+  const response = await customFetch(url);
+
+  const products = response.data.data;
+  const meta = response.data.meta;
+  return { products, meta };
 };
-export default Product;
+
+const Products = () => {
+  return (
+    <>
+      <Filters />
+      <ProductsContainer />
+      <PaginationContainer />
+    </>
+  );
+};
+export default Products;
