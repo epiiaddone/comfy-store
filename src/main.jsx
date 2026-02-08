@@ -5,7 +5,10 @@ import 'react-toastify/dist/ReactToastify.css';
 // order
 import './index.css';
 
+//ToastContainer needs to be mounted
 import { ToastContainer } from 'react-toastify';
+
+
 import { store } from './store';
 import { Provider } from 'react-redux';
 ReactDOM.createRoot(document.getElementById('root')).render(

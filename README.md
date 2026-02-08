@@ -2847,9 +2847,9 @@ cartSlice.js
       const { product } = action.payload;
 
       const item = state.cartItems.find((i) => i.cartID === product.cartID);
-      if (item) {
+      if (item) { //item in the cart
         item.amount += product.amount;
-      } else {
+      } else { //new item to cart
         state.cartItems.push(product);
       }
       state.numItemsInCart += product.amount;
@@ -2857,6 +2857,11 @@ cartSlice.js
       state.tax = 0.1 * state.cartTotal;
       state.orderTotal = state.cartTotal + state.shipping + state.tax;
       localStorage.setItem('cart', JSON.stringify(state));
+      
+      //doesn't throw an error
+      //wrapping in try catch wont work
+      //This call is running outside react - before hydration
+      //redux reducers must be pure - no side effects
       toast.success('Item added to cart');
     },
 }
@@ -3745,7 +3750,8 @@ const NavLinks = () => {
 
   return (
     <>
-      {links.map((link) => {
+      { //there is no links object
+        links.map((link) => {
         const { id, url, text } = link;
         if ((url === 'checkout' || url === 'orders') && !user) return null;
         return (
@@ -3814,6 +3820,7 @@ import { Form, redirect, Link } from 'react-router-dom';
 
 import { customFetch } from '../utils';
 import { toast } from 'react-toastify';
+
 export const action = async ({ request }) => {
   const formData = await request.formData();
   const data = Object.fromEntries(formData);

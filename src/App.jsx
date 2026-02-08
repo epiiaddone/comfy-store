@@ -4,6 +4,8 @@ import { loader as landingLoader } from './pages/Landing';
 import { loader as singleLoader } from './pages/SingleProduct';
 import { loader as productsLoader } from './pages/Products';
 
+import {default as registerAction} from './pages/Register';
+
 import { ErrorElement } from './components';
 
 import {
@@ -69,6 +71,7 @@ const router = createBrowserRouter([
     path: '/register',
     element: <Register />,
     errorElement: <Error />,
+    action:registerAction,
   },
 ]);
 
