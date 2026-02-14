@@ -6,8 +6,10 @@ import { loginUser } from '../features/user/userSlice';
 import { useDispatch } from 'react-redux';
 
 
+//currying
+//configure the function first
 export const action =
-  (store) =>
+  (store) =>// Dependency injection via closures. The below function now has access to store  s
   async ({ request }) => {
     const formData = await request.formData();
     const data = Object.fromEntries(formData);
