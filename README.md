@@ -4036,7 +4036,7 @@ const Login = () => {
       navigate('/');
     } catch (error) {
       console.log(error);
-      toast.error('guest user login error.please try later.');
+      toast.error('guest user login error. Please try later.');
     }
   };
 };
@@ -4082,8 +4082,8 @@ import { useSelector } from 'react-redux';
 import { CheckoutForm, SectionTitle, CartTotals } from '../components';
 
 const Checkout = () => {
-  const cartItems = useSelector((state) => state.cartState.cartTotal);
-  if (cartTotal.length === 0) {
+  const cartItems = useSelector((state) => state.cartState.cartItems);
+  if (cartItems.length === 0) {
     return <SectionTitle text='Your cart is empty' />;
   }
   return (

@@ -9,7 +9,7 @@ import { useDispatch } from 'react-redux';
 //currying
 //configure the function first
 export const action =
-  (store) =>// Dependency injection via closures. The below function now has access to store  s
+  (store) =>// Dependency injection via closures. The below function now has access to store
   async ({ request }) => {
     const formData = await request.formData();
     const data = Object.fromEntries(formData);
@@ -31,6 +31,26 @@ export const action =
   };
 
 const Login = () => {
+
+    const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const loginAsGuestUser = async () => {
+    try {
+      const response = await customFetch.post('/auth/local', {
+        identifier: 'test@test.com',
+        password: 'secret',
+      });
+      dispatch(loginUser(response.data));
+      toast.success('welcome guest user');
+      navigate('/');
+    } catch (error) {
+      console.log(error);
+      toast.error('guest user login error. Please try later.');
+    }
+  };
+
+
   return (
     <section className='h-screen grid place-items-center'>
       <Form
@@ -42,18 +62,20 @@ const Login = () => {
           type='email'
           label='email'
           name='identifier' //the API expects this
-          defaultValue='test@test.com'
         />
         <FormInput
           type='password'
           label='password'
           name='password'
-          defaultValue='secret'
         />
         <div className='mt-4'>
           <SubmitBtn text='login' />
         </div>
-        <button type='button' className='btn btn-secondary btn-block'>
+        <button
+          type='button'
+          className='btn btn-secondary btn-block'
+          onClick={loginAsGuestUser}
+        >
           guest user
         </button>
         <p className='text-center'>
