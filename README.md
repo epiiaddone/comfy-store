@@ -4847,7 +4847,7 @@ const allProductsQuery = (queryParams) => {
     queryParams;
 
   return {
-    queryKey: [
+    queryKey: [ //default params
       'products',
       search ?? '',
       category ?? 'all',
@@ -4997,7 +4997,7 @@ export const action =
           },
         }
       );
-      // remove query
+      // remove queries from cache
       queryClient.removeQueries(['orders']);
       // rest of the code
       store.dispatch(clearCart());

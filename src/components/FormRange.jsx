@@ -5,6 +5,10 @@ import { useState } from 'react';
 const FormRange = ({ label, name, size }) => {
   const step = 10000;
   const maxPrice = 100000;
+
+  //BUG
+  //after a search the value is set to the maxPrice
+  //the value should be read from the url
   const [selectedPrice, setSelectedPrice] = useState(maxPrice);
 
   return (

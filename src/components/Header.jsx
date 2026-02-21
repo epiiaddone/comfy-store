@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { logoutUser } from '../features/user/userSlice';
 import { clearCart } from '../features/cart/cartSlice';
+import { useQueryClient } from '@tanstack/react-query';
 
 
 const Header = () => {
@@ -13,6 +14,8 @@ const Header = () => {
     navigate('/');
     dispatch(clearCart());
     dispatch(logoutUser());
+    //tanstack cached queries remove
+    queryClient.removeQueries();
   };
   return (
     <header className=' bg-neutral py-2 text-neutral-content '>

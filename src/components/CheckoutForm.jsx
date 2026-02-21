@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 import { clearCart } from '../features/cart/cartSlice';
 
 export const action =
-  (store) => //dependancy injection via closure.
+  (store, queryClient) => //dependancy injection via closure.
   async ({ request }) => {
 
     const formData = await request.formData();
@@ -34,6 +34,8 @@ export const action =
           },
         }
       );
+      // remove tanstack orders query from cache as new data
+      queryClient.removeQueries(['orders']);
       store.dispatch(clearCart());
       toast.success('order placed successfully');
       return redirect('/orders');

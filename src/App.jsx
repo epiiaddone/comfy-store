@@ -1,4 +1,6 @@
 import { Router, RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 
 //loaders
@@ -32,6 +34,15 @@ import {
   Orders,
 } from './pages';
 
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 60 * 5,
+    },
+  },
+});
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -41,19 +52,19 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Landing />,
-        loader: landingLoader, //this loader can be used by child elements when they call "useLoaderData()"
+        loader: landingLoader(queryClient), //this loader can be used by child elements when they call "useLoaderData()"
         errorElement: ErrorElement,
       },
       {
         path: 'products',
         element: <Products />,
-        loader: productsLoader,
+        loader: productsLoader(queryClient),
         errorElement: ErrorElement,
       },
       {
         path: 'products/:id',
         element: <SingleProduct />,
-        loader: singleLoader,
+        loader: singleLoader(queryClient),
         errorElement: ErrorElement,
       },
       {
@@ -66,13 +77,13 @@ const router = createBrowserRouter([
         path: 'checkout',
         element: <Checkout />,
         loader: checkoutLoader(store),
-        action: checkoutAction(store),
+        action: checkoutAction(store, queryClient),
 
       },
       {
         path: 'orders',
         element: <Orders />,
-        loader: ordersLoader(store),
+        loader: ordersLoader(store, queryClient),
       },
     ],
   },
@@ -94,7 +105,10 @@ const router = createBrowserRouter([
 
 const App = ()=>{
   return(
-   <RouterProvider  router={router}/>
+       <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
   )
 }
 export default App
